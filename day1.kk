@@ -7,7 +7,7 @@ import aoc/tests
 import std/time/timer
 
 public fun main() {
-    print-elapsed fn() {
+    print-elapsed {
         val input = parse-input-ints("./day1/data1.txt")
         
         // Task 1
@@ -65,13 +65,13 @@ fun compute2()
 public fun tests()
 {
 
-    test("Task 1") fn() {
+    test("Task 1") {
         with fun read() { [1721, 979, 366, 299, 675, 1456] }
         val result = compute1()
         result.should-be-just(514579)
     }
 
-    test("Task 2") fn() {
+    test("Task 2") {
         with fun read() { [1721, 979, 366, 299, 675, 1456] }
         val result = compute2()
         result.should-be-just(241861950)

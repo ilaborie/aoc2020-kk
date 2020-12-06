@@ -12,8 +12,8 @@ import std/num/ddouble
 public fun test(name: string, test: () -> <console,exn,ndet> error<()>)
 {
     try(
-        fn() {
-            val (t, result) = elapsed fn() { test() }
+        {
+            val (t, result) = elapsed { test() }
             report-console(name, t, result)
         },
         fn(ex: exception) { 
@@ -38,15 +38,15 @@ fun check(condition: bool, msg: () -> string): error<()>
 // Check two int are equals
 public fun should-be(x: int, y: int)
 {
-    check(x == y) fn() {  "Expected: " + y.show + ", but have: " + x.show }
+    check(x == y) {  "Expected: " + y.show + ", but have: " + x.show }
 }
 
 // Check a maybe<int>
 public fun should-be-just(x: maybe<int>, y: int)
 {
     match(x) {
-        Nothing -> check(False) fn() { "Expected: Just(" + y.show + "), but have: Nothing" }
-        Just(i) -> check(i == y) fn() {  "Expected: Just(" + y.show + "), but have: Just(" + i.show + ")" }
+        Nothing -> check(False) { "Expected: Just(" + y.show + "), but have: Nothing" }
+        Just(i) -> check(i == y) {  "Expected: Just(" + y.show + "), but have: Just(" + i.show + ")" }
     }
 }
 
